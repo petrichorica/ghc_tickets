@@ -17,8 +17,11 @@
 
 import requests
 import logging
+from dotenv import load_dotenv
+import os
 
-WEBHOOK = "https://discord.com/api/webhooks/1257955325244477441/p5BDv2ZZ8UTTa4Ga4sF_GYJHpTJzhbHsqxlrrDUY6m3oknKrmle2KJHmxFz6AyOjW8RZ"
+load_dotenv()
+WEBHOOK = os.getenv("WEBHOOK")
 
 def send_discord_notification(message):
     webhook_url = WEBHOOK
@@ -32,3 +35,5 @@ def send_discord_notification(message):
     except Exception as e:
         logging.error(f"Error during send_discord_notification: {str(e)}")
 
+if __name__ == "__main__":
+    send_discord_notification("Test notification from discord_notify.py")
